@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TAS Data Studio</title>
+    <link rel="shortcut icon" href="src/images/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="src/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="src/css/ui-grid.min.css"/>
+    <link rel="stylesheet" type="text/css" href="src/css/ag-grid.css"/>
+    <link rel="stylesheet" type="text/css" href="src/css/mdb.min.css"/>
+    <link rel="stylesheet" type="text/css" href="src/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="src/css/feather.css"/>
+
+    <script type="text/javascript" src="src/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="src/libs/popper.min.js"></script>
+    <script type="text/javascript" src="src/libs/moment.min.js"></script>
+    <script type="text/javascript" src="src/libs/angular.min.js"></script>
+    <script type="text/javascript" src="src/libs/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="src/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="src/libs/ui-grid.min.js"></script>
+    <script type="text/javascript" src="src/libs/ag-grid-community.min.js"></script>
+    <script type="text/javascript" src="src/libs/mdb.min.js" defer></script>
+    <script type="text/javascript" src='src/libs/ui-bootstrap-tpls.js'></script>
+    <script type="text/javascript" src="src/js/angular-drag-and-drop-lists.min.js"></script>
+    <script type="text/javascript" src="src/js/ui-grid-edit-datepicker.js"></script>
+    <script type="text/javascript" src="src/js/common/reference_module.js"></script>
+    <!--<script type="text/javascript" src="http://172.16.20.229/tas_centralized_modules/dropdown_module/dropdown_module.js"> </script>-->
+    <script type="text/javascript" src="src/js/dropdown_module_new.js"> </script>
+    <script type="text/javascript" src="http://172.16.20.229/tas_centralized_modules/ui_grid_module/ui_grid_module.js"></script>
+    <script type="text/javascript" src="src/js/upload.js"></script>
+    <script type="text/javascript" src="src/js/popup_module.js"></script>
+    <script type="text/javascript" src="src/js/source_setup.js"></script>
+    <script type="text/javascript" src="src/js/schedule_module.js"></script>
+    <script type="text/javascript" src="src/js/validation_module.js"></script>
+    <script type="text/javascript" src="src/js/information_units.js"></script>
+    <script type="text/javascript" src="src/js/module_info.js"></script>
+    <script type="text/javascript" src="src/js/select_date.js"></script>
+    <script type="text/javascript" src="src/js/company_info_lat.js"></script>
+
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="src/libs/socket.io-stream.js"></script>
+
+    <script type="text/javascript" src="src/js/common/app.js"></script>
+    <script type="text/javascript" src="src/js/common/service.js"></script>
+    <script type="text/javascript" src="src/js/common/factory.js"></script>
+    <script type="text/javascript" src="src/js/common/filter.js"></script>
+    <script type="text/javascript" src="src/js/menu_list.js"></script>
+    <script type="text/javascript" src="src/js/icons_list.js"></script>
+    <script type="text/javascript" src="src/js/company.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="compCntrl" id="body_wrapper" style="display: none;">
+<div class="header_top">
+    <div class="container-full">
+	    <div class="pull-left logo_div" ng-class="{'closed-sidebarr': !side_menu_active}">
+		    <svg width="30" height="28">
+                	<rect ry="2" rx="2" height="24" width="26" x="0" y="0" style="fill:#FFAC47;stroke:black;stroke-width:0"></rect>
+                	<rect x="7" y="6" rx="0" ry="0" width="12" height="12" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+                	<rect x="10" y="9" rx="0" ry="0" width="6" height="6" style="fill:#FFAC47;stroke:black;stroke-width:0"></rect>
+                	<rect x="11.5" y="10.5" rx="0" ry="0" width="3" height="3" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+                	<rect x="3" y="6" rx="0" ry="0" width="3" height="3" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+                	<rect x="7" y="3" rx="0" ry="0" width="3" height="4" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+                	<rect x="20" y="15" rx="0" ry="0" width="3" height="3" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+                	<rect x="16" y="18" rx="0" ry="0" width="3" height="3" style="fill:#fff;stroke:black;stroke-width:0"></rect>
+		    </svg>
+		    <span class="logo_title" ><b>Company Management</b></span>
+	    </div>	   
+	    <div class="pull-left hamburger_full_box">
+                    <div class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar" ng-click="side_menu_func()"> <!--ng-class="{'is-active': !side_menu_active}"-->
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </div>
+            </div>
+    </div>
+</div>
+<div class="ts_box" style="position: relative;width: 100%;height: 100%;">
+	<comp-info config="company_info"></comp-info>
+</div>
+ <% include common_views %>
+
+</body>
+</html>
+<script type="text/ng-template" id="company_name">
+  <div class="clgbbt_p">
+    <!--<input type="text" ng-model="basic_in['v']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" > -->
+    <input type="text" ng-model="cmp_info.company_mgmt['company_name']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-change="update_value('company_name', cmp_info.company_mgmt['company_name'])"> 
+  </div>
+</script>
+
+<script type="text/ng-template" id="filing_company">
+  <div class="clgbbt_p">
+    <input type="text" ng-model="cmp_info.company_mgmt['filing_company']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-change="update_value('filing_company', cmp_info.company_mgmt['filing_company'])"> 
+  </div>
+</script>
+<script type="text/ng-template" id="sector">
+     <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down>
+</script>
+<script type="text/ng-template" id="sec_cik">
+  <div class="clgbbt_p">
+    <input type="text" ng-model="cmp_info.company_mgmt['sec_cik']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-model="basic_in['v']" ng-change="update_value('sec_cik', cmp_info.company_mgmt['sec_cik'])"> 
+  </div>
+</script>
+
+<script type="text/ng-template" id="sec_sector">
+  <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down>
+</script>
+
+<script type="text/ng-template" id="sec_industry">
+   <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down>
+</script>
+
+<script type="text/ng-template" id="company_url">
+  <div class="clgbbt_p">
+    <input type="text" ng-model="cmp_info.company_mgmt['company_url']['n']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-model="basic_in['v']" ng-change="update_value('company_url', cmp_info.company_mgmt['company_url'])"> 
+  </div>
+</script>
+<!--<script type="text/ng-template" id="user_relation_url">
+  <div class="clgbbt_p">
+    <input type="text" ng-model="cmp_info.company_mgmt['user_relation_url']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-model="basic_in['v']" ng-keyup="update_value('user_relation_url', cmp_info.company_mgmt['user_relation_url'])"> 
+  </div>
+</script>-->
+
+<script type="text/ng-template" id="user_relation_url">
+      <div class="clgbb_p table_cont" style="width:100% !important; box-shadow: none; border :none ; margin-top:0px; flex-direction: row">
+        <div ng-repeat="(version, vals)  in cmp_info['company_mgmt']['user_relation_url']" class= "displat-selected-version" title="{{vals['n']}}">
+                <div class="pop-ver-sel-cls-left">
+                  {{vals['n']}}
+                </div>
+                <div class="pop-ver-del-cls-right" ng-click="remove_selected_data(version, vals, 'user_relation_url')">
+                  &times;
+                </div>
+        </div>
+        </div>
+        <div class="clgbb_p">
+          <input type="text" ng-model="basic_in['v']" placeholder="{{basic_in['n']}}" class="form-control sl_cip"> 
+          <i class="fa fa-plus clgbbt_pfa" style="float:left" aria-hidden="true" ng-click="add_new_website(basic_in['v'])" title="Add New Website"></i>
+       </div>
+</script>
+
+<script type="text/ng-template" id="logo">
+<div class="clgbbt_p">
+  <div  class="form-check" style="float:left">
+     <input type="radio" class="form-check-input"  name="groupOfMaterialRadios" ng-click="selected_button('Browse')">
+     <label class="form-check-label" for="materialGroupExample1">Browse</label>
+   </div>
+
+   <div class="form-check"  style="float:left; left:50px">
+     <input type="radio" class="form-check-input" name="groupOfMaterialRadios" checked ng-click="selected_button('url')">
+     <label class="form-check-label" for="materialGroupExample2">Url</label>
+   </div>
+</div>
+<div class="clgbbt_p" ng-if="selected_rad == 'Browse'">
+     <div ng-model="basic_in['v']" placeholder="{{basic_in['n']}}" class="form-control sl_cip browse-button" ng-class="{disabled: edit_c_flg}">
+	<input type="file">
+     </div>
+</div>
+<div class="clgbbt_p" ng-if="selected_rad == 'url'">
+    <input type="text" ng-model="cmp_info.company_mgmt['logo']" placeholder="{{basic_in['n']}}" class="form-control sl_cip" ng-model="basic_in['v']"  ng-change="update_value('logo', cmp_info.company_mgmt['logo'])">
+  </div>
+</script>
+<script type="text/ng-template" id="ticker">
+  	<div class="clgbb_p table_cont" style="width:100% !important; box-shadow: none; border :none ; margin-top:0px; flex-direction: row">
+   	<div ng-repeat="(version, vals)  in cmp_info['company_mgmt']['ticker']" class= "displat-selected-version" title="{{vals['n']}}">
+		<div class="pop-ver-sel-cls-left">
+		  {{vals['n']}}
+		</div>
+		<div class="pop-ver-del-cls-right" ng-click="remove_selected_data(version, vals, 'ticker')">
+		  &times;
+		</div>
+   	</div>
+   	</div>
+  	<div class="clgbb_p">
+	  <input type="text" ng-model="basic_in['v']" placeholder="{{basic_in['n']}}" class="form-control sl_cip"> 
+	  <i class="fa fa-plus clgbbt_pfa" style="float:left" aria-hidden="true" ng-click="add_new_ticker(basic_in['v'])" title="Add Ticker"></i>
+       </div>
+
+</script>
+<script type="text/ng-template" id="country">
+	<drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="entity_type">
+	<drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="accessors_standard">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+        <div class="clgbb_p table_cont"  style="width:100% !important; box-shadow: none; border :none ; margin-top:0px; flex-direction: row">
+	   <div ng-repeat="(version, vals)  in cmp_info.company_mgmt['accessors_standard']" class= "displat-selected-version" title="{{vals['n']}}">
+	        <div class="pop-ver-sel-cls-left">
+		     {{vals['n']}}
+		</div>
+                <div class="pop-ver-del-cls-right" ng-click="remove_selected_drp_data(version, vals, 'accessors_standard')">
+		  &times;
+		</div>
+	   </div>
+	</div>
+</script>
+<script type="text/ng-template" id="currency">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+        <div class="clgbb_p table_cont"   style="width:100% !important; box-shadow: none; border :none ; margin-top:0px; flex-direction: row">
+	   <div ng-repeat="(version, vals)  in cmp_info.company_mgmt['currency']" class= "displat-selected-version" title="{{vals['n']}}">
+		<div class="pop-ver-sel-cls-left">
+		  {{vals['n']}}
+		</div>
+		<div class="pop-ver-del-cls-right" ng-click="remove_selected_drp_data(version, vals, 'currency')">
+		  &times;
+		</div>
+	   </div>
+        </div>
+
+</script>
+<script type="text/ng-template" id="industry">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="financial_year_start">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="filing_frequency">
+          <div class="display_ff" ng-repeat ="data in basic_in['drp_lst']['data']" ng-class="{active: cmp_info['filing_frequency_d'][data['n']] ,'hide': data['n'] == ''}">
+               <div class="ui-grid-selection-row-header-buttons ui-grid-icon-ok"  style="user-select: none; float: left;"   ng-class="{'ui-grid-row-selected': selected_frequency[data['n']]}" ng-click="add_or_remove_filing_frequency(data)" ng-if="selected_frequency[data['n']] != ''">&nbsp;</div>
+               <div class="ff_data"> {{data['n']}}</div>
+          </div>
+         <div class="clgbb_p table_cont" ng-if="cmp_info['filing_frequency'].length > 0">                                                                              
+               <div class="table_container" > 
+			  <table style="width:100%; ">
+			       <tr style="height:30px;"><th class="taxonomy_data_th_cls first">Period</th><th  class="taxonomy_data_th_cls">From Month</th><th  class="taxonomy_data_th_cls">To Month</th><th  class="taxonomy_data_th_cls">Add Row</th><!--<th  class="taxonomy_data_th_cls">Del Row</th>--></tr>                                
+			       <tbody>
+				 <tr ng-repeat = "data_vals in cmp_info['filing_frequency'] track by $index">
+				     <td class="taxonomy_data_td_cls first">{{data_vals[0]}}</td>
+				     <td class="taxonomy_data_td_cls">
+                                      
+                                      <!--  <drop-down config="basic_in['drp_lst1']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> -->
+				       <div class="dropdown" style="width: 200px;">
+					  <div class="header-icon waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px 5px;color: #fff; border: 1px solid #dfdfdf;">
+					    <div class="header_icon_txt" title="{{data_vals[1]['n']}}" style="color:#black!important;">{{data_vals[1]['n']}}</div>
+					  </div>
+					  <div class="dropdown-menu dropdown-menu-tas main_drp_dwn"  style = "transform: unset">
+					    <div class="md-form md-form-tas" style="margin: 5px 23px;">
+					      <input class="form-control" type="text" placeholder="Search" aria-label="Search" ng-model="doc_filter" style="font-size: 14px;" autofocus>
+					    </div>
+					    <div class="dropdown-item-tas-full">
+					      <div class="dropdown-item-tas " ng-repeat="rw in  basic_in['drp_lst1']['data']" ng-click="inser_from_and_to_data(rw, $event, 'from')"  title="{{rw}}">{{rw['n']}}</div>
+					    </div>
+					  </div>
+				       </div>
+				     </td>
+				     <td class="taxonomy_data_td_cls">
+                                    <!--    <drop-down config="basic_in['drp_lst1']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> -->
+				       <div class="dropdown" style="width: 200px;">
+					 <div class="header-icon waves-effect dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0px 5px;color: #fff; border: 1px solid #dfdfdf;">
+					   <div class="header_icon_txt" title="{{data_vals[2]['n']}}" style="color:#black!important;">{{data_vals[2]['n']}}</div>
+					 </div>
+					 <div class="dropdown-menu dropdown-menu-tas main_drp_dwn"  style = "transform: unset">
+					    <div class="md-form md-form-tas" style="margin: 5px 23px;">
+					       <input class="form-control" type="text" placeholder="Search" aria-label="Search" ng-model="doc_filter" style="font-size: 14px;" autofocus>
+					    </div>
+					    <div class="dropdown-item-tas-full">
+					       <div class="dropdown-item-tas " ng-repeat="rw in  basic_in['drp_lst1']['data']" ng-click="inser_from_and_to_data(rw, $event, 'to')"  title="{{rw}}">{{rw['n']}}</div>
+					    </div>
+					 </div>
+				       </div>
+				     </td>
+				     <td class="taxonomy_data_td_cls">
+					 <i class="fa fa-plus clgbbt_pfa" aria-hidden="true" ng-click="add_new_row_to_table(data_vals[0], $index)" title="Edit metdata"></i>
+				     </td>
+				 </tr>
+			       </tbody>
+
+			  </table> 
+		    </div>
+            </div>
+</script>
+
+<script type="text/ng-template" id="financial_year_start">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }" > </drop-down> 
+</script>
+<script type="text/ng-template" id="financial_year_end">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="holding_company">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+        <div class="view_company_details"  ng-click="display_subsidary_compant_details(basic_in['drp_lst'].scope.selected, 'holding_company')"> 
+              View
+        </div>
+</script>
+<script type="text/ng-template" id="subsidary_company">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }" style="width:100%"> </drop-down> 
+        <div class="clgbb_p table_cont" ng-if="cmp_info['company_mgmt']['subsidary_company'].length >0"  style="width:100%">
+	   <div class="table_container" > 
+	      <table style="width:100%; ">
+		 <tr style="height:30px;"><th class="taxonomy_data_th_cls first">Subsidary Companies</th><th class="taxonomy_data_th_cls first">Delete</th></tr>
+		   <tbody>
+		       <tr ng-repeat = "comp_lst in cmp_info['company_mgmt']['subsidary_company'] track by $index" style="height:35px">
+			  <td class="taxonomy_data_td_cls first" ng-click="display_subsidary_compant_details(comp_lst, 'subsidary_company')" style="cursor:pointer">{{comp_lst['n']}}</td>
+			  <td class="taxonomy_data_td_cls first" style="color:red" ng-click="delete_selected_susidary_data(comp_lst)" style="cursor:pointer">x</td>
+			</tr>
+		   </tbody>
+	      </table>
+	   </div> 
+	</div> 
+
+</script>
+<script type="text/ng-template" id="reporting_start_period">
+        <drop-down config="basic_in['drp_lst']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+        <drop-down config="basic_in['drp_lst1']" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+</script>
+<script type="text/ng-template" id="recent_updates">
+	 <div  ng-repeat = "data_update in cmp_info['recent_updates']">
+	   <div class="updated_user_info">
+	      <div style="float:left">
+	       {{data_update.tc}}
+	      </div>
+	      <div style="float:left; margin-left:6px; color:{{color_map[data_update.a]}}; font-style: italic;">
+		 {{'('+data_update.a+')'}}
+	      </div>
+	   </div>
+	   <div class="updated_user_data">
+	      <div style="width:20px; float:left">
+	       {{data_update.ut|| 'none'}} 
+	      </div>
+	       <div style=" float:right">
+	       {{ data_update.user|| 'none'}} 
+	      </div>
+	   </div>
+	   <hr>
+	 </div>
+</script>
+<script type="text/ng-template" id="meta_info">
+    <div class="clgbb_p1 edit" ng-repeat="(k, v) in cmp_info['company_mgmt']['meta_info']">
+	<code class="clgbbn_p1"><input type="text" ng-init="kk = k.replace('_', ' ')" ng-model="kk" class="form-control sl_cip" disabled style="text-transform: capitalize;"></code>
+	<div class="clgbbt_p1"><input type="text" ng-model="v" class="form-control sl_cip" disabled></div>
+	<i class="fa fa-pencil-square-o clgbbt_pfa" aria-hidden="true" ng-click="edit_meta_func(k, v)" title="Edit metdata"></i>
+	<i class="fa fa-trash-o clgbbt_pfa" aria-hidden="true" ng-click="remove_meta_func_company(k, v)" title="Delete metdata" style="color:#ff6961;"></i>
+    </div>
+    <div class="clgbb_p1 edit">
+	<code class="clgbbn_p1"><input type="text" ng-model="meta_dic['k']" placeholder="Key" class="form-control sl_cip"></code>
+	<div class="clgbbt_p1"><input type="text" ng-model="meta_dic['v']" placeholder="Value" class="form-control sl_cip" onkeydown="delete_contents(event)"></div>
+	<i class="fa fa-plus clgbbt_pfa" aria-hidden="true" ng-click="add_meta_func()"></i>
+    </div>
+
+</script>
+
+<script type='text/ng-template' id ='id'>
+    <div class="clgbb_p1 edit" ng-repeat="data in cmp_info['company_mgmt']['client_info']">
+        <code class="clgbbn_p1"  style="width:50%"><input type="text" ng-model="data['id']" class="form-control sl_cip" disabled style="text-transform: capitalize;"></code>
+        <div class="clgbbt_p1"><input type="text" ng-model="data['Name']" class="form-control sl_cip" disabled></div>
+        <i class="fa fa-trash-o clgbbt_pfa" aria-hidden="true" ng-click="remove_client_info(data, basic_in['k'])" title="Delete metdata" style="color:#ff6961;"></i>
+    </div>
+    <div class="clgbb_p1 edit">
+        <code class="clgbbn_p1" style="width:50%"><input type="text" ng-model="client_dict['id']" placeholder="Id" class="form-control sl_cip" ></code>
+        <div class="clgbbt_p1"><input type="text" ng-model="client_dict['Name']" placeholder="Name" class="form-control sl_cip" onkeydown="delete_contents(event)"></div>
+        <i class="fa fa-plus clgbbt_pfa" aria-hidden="true" ng-click="add_client_details(basic_in['k'])"></i>
+    </div>
+</script>
+
+<script type="text/ng-template" id="address">
+    <div ng-repeat = "address in company_address track by $index" >    
+      <div class="clgbb_p table_cont" style="width:93% !important; margin-top:0px; flex-direction: row; ">
+         <div class="table_container" style="width:100%"> 
+           <div class="clgbb_p" >
+                      <code class="clgbbn_p">{{ address['type']['n']}}</code>
+                      <drop-down config="address['drp_lst1']" ng-init="address['drp_lst1']['ev'] = $index" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+           </div>
+           <div class="clgbb_p" >
+                       <code class="clgbbn_p">{{ address['address']['n']}}</code>
+                       <textarea type="text" ng-model="address['address']['v']" placeholder="{{address['address']['n']}}" class="form-control sl_cip" style="width:auto; height: 80px;" ng-change="address_updated_status(address['address']['v'])"> </textarea>
+                      
+           </div>
+           <div class="clgbb_p" >
+                       <code class="clgbbn_p">{{ address['country']['n']}}</code>
+                       <drop-down config="address['drp_lst']"  ng-init="address['drp_lst']['ev'] = $index" class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+           </div>
+           <div class="clgbb_p" >
+                       <code class="clgbbn_p">{{ address['state']['n']}}</code>
+                       <drop-down config="address['drp_lst2']"  ng-init="address['drp_lst2']['ev'] = $index"  class="drop_down_class" ng-class="{active: basic_in['up_st'] == 1 }"> </drop-down> 
+           </div>
+           <div class="clgbb_p" >
+                       <code class="clgbbn_p">{{ address['pincode']['n']}}</code>
+                       <input type="text" ng-model="address['pincode']['v']" placeholder="{{address['pincode']['n']}}" class="form-control sl_cip" style="width:auto" ng-change="address_updated_status(address['pincode']['v'])"> 
+           </div>
+           
+           <div class="clgbb_p" >
+                          
+                            <code class="clgbbn_p">{{ address['phone']['n']}}</code> 
+                            <div style="width : calc(100% - 200px); float: left; ">
+				<input type="text" ng-model="address['phone']['v']" placeholder="{{address['phone']['n']}}" class="form-control sl_cip" style="width:90%; float: left;"> 
+				<i class="fa fa-plus clgbbt_pfa" style="float:left" aria-hidden="true" ng-click="add_new_phone_number(address['phone']['v'], $event, $index)" title="Add Phone"></i>
+                                <table style="width:100%; " ng-if ="address['phone']['val'].length > 0">
+                                    <tr style="height:30px;"><th class="taxonomy_data_th_cls first">Phone No </th><th class="taxonomy_data_th_cls first">Delete</th></tr>                                
+                                     <tbody>
+                                             <tr ng-repeat = "(version, vals)  in address['phone']['val'] ">
+                                                 <td class="taxonomy_data_td_cls first" style="cursor:pointer">{{vals['n']}}</td>
+                                                 <td class="taxonomy_data_td_cls first" style="color:red" ng-click="delete_selected_phone_number(version, vals, address)" style="cursor:pointer">x</td>
+                                             </tr>
+                                     </tbody>
+                                </table>
+                            </div>
+           </div>
+           
+           <div class="clgbb_p" >
+                       <code class="clgbbn_p">{{ address['fax']['n']}}</code>
+                       <input type="text" ng-model="address['fax']['v']" placeholder="{{address['fax']['n']}}" class="form-control sl_cip" style="width:auto" ng-change="address_updated_status(address['fax']['v'])"> 
+           </div>
+         </div>
+      </div>
+      </div>
+      <i class="fa fa-plus clgbbt_pfa" aria-hidden="true" ng-click="add_new_address(basic_in['k'])"></i>
+
+</script>
+
+
